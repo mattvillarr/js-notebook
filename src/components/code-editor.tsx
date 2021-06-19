@@ -66,6 +66,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
         value={initialValue}
         language='javascript'
         theme='dark'
+        height='100%'
         options={{
           wordWrap: 'on',
           minimap: { enabled: false },
@@ -76,7 +77,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
           scrollBeyondLastLine: false,
           automaticLayout: true,
         }}
-        height='500px'
       />
     </div>
   );
