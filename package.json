@@ -1,5 +1,6 @@
 {
   "name": "jbook",
+  "homepage": "https://mattvillarr.github.io/js-notebook/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +14,7 @@
     "@types/prettier": "^2.3.0",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
+    "@types/react-redux": "7.1.15",
     "@types/react-resizable": "^1.7.2",
     "@uiw/react-md-editor": "2.1.1",
     "axios": "^0.21.1",
@@ -25,14 +27,19 @@
     "prettier": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "7.2.2",
     "react-resizable": "^3.0.4",
     "react-scripts": "4.0.3",
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0",
     "typescript": "^4.3.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -53,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.2"
   }
 }
