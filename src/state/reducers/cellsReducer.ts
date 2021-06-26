@@ -54,6 +54,7 @@ const reducer = produce((state: CellsState = initalState, action: Action) => {
 
       if (foundIndex < 0) {
         state.order.push(cell.id);
+      } else {
         state.order.splice(foundIndex, 0, cell.id);
       }
 
