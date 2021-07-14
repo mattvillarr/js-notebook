@@ -1,7 +1,6 @@
+import './resizable.css';
 import { useEffect, useState } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
-
-import './resizable.css';
 
 interface ResizableProps {
   direction: 'horizontal' | 'vertical';
@@ -19,7 +18,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
       if (timer) {
         clearTimeout(timer);
       }
-      setTimeout(() => {
+      timer = setTimeout(() => {
         setInnerHeight(window.innerHeight);
         setInnerWidth(window.innerWidth);
         if (window.innerWidth * 0.75 < width) {

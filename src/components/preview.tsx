@@ -1,25 +1,24 @@
-import { useEffect, useRef } from 'react';
-
 import './preview.css';
+import { useRef, useEffect } from 'react';
 
 interface PreviewProps {
   code: string;
-  bundlingStatus: string;
+  err: string;
 }
 
 const html = `
     <html>
       <head>
-      <style>html {background-color: white;}</style>
+        <style>html { background-color: white; }</style>
       </head>
       <body>
         <div id="root"></div>
         <script>
           const handleError = (err) => {
             const root = document.querySelector('#root');
-            root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>'
+            root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>';
             console.error(err);
-          }
+          };
 
           window.addEventListener('error', (event) => {
             event.preventDefault();
@@ -38,7 +37,7 @@ const html = `
     </html>
   `;
 
-const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
+const Preview: React.FC<PreviewProps> = ({ code, err }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
@@ -49,14 +48,14 @@ const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
   }, [code]);
 
   return (
-    <div className='preview-wrapper'>
+    <div className="preview-wrapper">
       <iframe
+        title="preview"
         ref={iframe}
-        title='preview'
-        sandbox='allow-scripts'
+        sandbox="allow-scripts"
         srcDoc={html}
       />
-      {bundlingStatus && <div className='preview-error'>{bundlingStatus}</div>}
+      {err && <div className="preview-error">{err}</div>}
     </div>
   );
 };

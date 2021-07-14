@@ -18,7 +18,6 @@ export const fetchPlugin = (inputCode: string) => {
       });
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
-        // check if file is in cache, otherwise get and store response
         const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
           args.path
         );
@@ -29,7 +28,6 @@ export const fetchPlugin = (inputCode: string) => {
       });
 
       build.onLoad({ filter: /.css$/ }, async (args: any) => {
-        // import 'bulma@0.9.1/css/bulma.css'; otherwise it will fail
         const { data, request } = await axios.get(args.path);
         const escaped = data
           .replace(/\n/g, '')
@@ -47,7 +45,7 @@ export const fetchPlugin = (inputCode: string) => {
           resolveDir: new URL('./', request.responseURL).pathname,
         };
         await fileCache.setItem(args.path, result);
-        console.log(result);
+
         return result;
       });
 
